@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   }
 
   else {
-    const res = await fetch(process.env.NEXTAUTH_URL + "/api/user", {
+    const res = await fetch("/api/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
