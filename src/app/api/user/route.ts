@@ -1,5 +1,5 @@
 import prisma from "@/app/lib/prisma";
-import * as bcrypt from "bcrypt"
+import bcrypt from "bcrypt"
 
 interface ReuqestBody {
     name: string;
