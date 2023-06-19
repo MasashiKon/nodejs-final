@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GithubProvider from "next-auth/providers/github"
 
 const handler = NextAuth({
   providers: [
@@ -17,7 +18,7 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch("/api/login", {
+        const res = await fetch("https://nodejs-final-git-main-masashikon.vercel.app/api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -40,6 +41,10 @@ const handler = NextAuth({
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID ?  process.env.GITHUB_ID : "",
+      clientSecret: process.env.GITHUB_SECRET ? process.env.GITHUB_SECRET : "",
     }),
   ]
 });
